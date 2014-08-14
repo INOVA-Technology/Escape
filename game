@@ -1,6 +1,6 @@
 #!/usr/bin/env ruby
 
-require_relative "lib/space"
+require_relative "lib/spaces"
 require_relative "lib/grid"
 require_relative "lib/delegate"
 

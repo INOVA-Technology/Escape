@@ -36,7 +36,7 @@ class PowerUp < Space
 
 	def initialize(health: 0)
 		super()
-		@str = "^"
+		@str = "%"
 		@health = health
 	end
 end
