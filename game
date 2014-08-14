@@ -1,36 +1,29 @@
 #!/usr/bin/env ruby
 
 class Space
-	attr_accessor :value
 	def initialize
+		@str = " "
 		@can_pass_though = true
 	end
 
 	def to_s
-		" "
+		@str
 	end
 end
 
 class Player < Space
 	def initialize
 		super()
+		@str = "@"
 		@can_pass_though = false
-	end
-
-	def to_s
-		"@"
 	end
 end
 
 class Wall < Space
 	def initialize(value)
 		super()
-		@value = value # one of these: - |
+		@str = value # one of these: - |
 		@can_pass_though = false
-	end
-
-	def to_s
-		@value
 	end
 end
 
@@ -40,11 +33,8 @@ class PowerUp < Space
 
 	def initialize(health: 0)
 		super()
+		@str = "^"
 		@health = health
-	end
-
-	def to_s
-		"^"
 	end
 
 end
