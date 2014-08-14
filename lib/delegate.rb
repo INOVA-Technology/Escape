@@ -26,6 +26,10 @@ class Delegate
 			use_powerup(new_space) if new_space.is_a?(PowerUp)
 			@grid[new_pos] = grid.player
 			@grid[player_pos] = Space.new
+			if new_space.is_a?(Exit)
+				puts "Level complete!"
+				exit
+			end
 		else
 			puts "Nope!"
 		end

@@ -7,9 +7,9 @@ require_relative "lib/delegate"
 # grid = Grid.new(3, 3)
 map = <<EOT
  ----- 
-|@ ^  |
+|@ %  |
 |     |
-|     |
+|     >
  ----- 
 EOT
 

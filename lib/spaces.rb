@@ -40,3 +40,10 @@ class PowerUp < Space
 		@health = health
 	end
 end
+
+class Exit < Space
+	def initialize(value)
+		super()
+		@str = value # either < or >
+	end
+end

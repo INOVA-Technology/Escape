@@ -30,8 +30,10 @@ class Grid
 					Wall.new(c)
 				when "@"
 					Player.new
-				when "^"
+				when "%"
 					PowerUp.new(health: 3)
+				when "<", ">"
+					Exit.new(c)
 				else
 					raise ArgumentError, "invalid character: #{c}"
 				end
