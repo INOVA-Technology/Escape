@@ -34,6 +34,8 @@ class Grid
 					PowerUp.heal(3)
 				when "<", ">"
 					Exit.new(c)
+				when "&"
+					Enemy.new
 				else
 					raise ArgumentError, "invalid character: #{c}"
 				end

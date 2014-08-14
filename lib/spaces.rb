@@ -55,3 +55,11 @@ class Exit < Space
 		@str = value # either < or >
 	end
 end
+
+class Enemy < Space
+	def initialize
+		super()
+		@can_pass_through = false
+		@str = "&" # later this will change depending on the enemy type and such
+	end
+end
