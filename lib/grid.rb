@@ -73,11 +73,50 @@ class Grid
 		(c ? [r, c] : r)
 	end
 
+	def in_direction_of_space(direction, r, c = nil)
+		if c
+			unless r < @rows && c < @columns
+				nil
+			end
+		else
+			if r < @rows * @columns
+				case direction.to_sym
+				when :l
+					(c ? c -= 1 : r -= 1)
+				when :r
+					(c ? c += 1 : r += 1)
+				when :u
+					(c ? r -= 1 : r -= @columns)
+				when :d
+					(c ? r += 1 : r += @columns)
+				else
+					nil
+				end
+			else
+				nil
+			end
+		end
+	end
+
 	def player_index
 		e = nil
 		i = 0
 		@spaces.each do |s|
 			if s.is_a?(Player)
+				e = i
+				break
+			end
+			i += 1
+		end
+		e
+	end
+
+	# idk if this works
+	def index_of(space)
+		e = nil
+		i = 0
+		@spaces.each do |s|
+			if s == space
 				e = i
 				break
 			end

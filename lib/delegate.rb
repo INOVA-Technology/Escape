@@ -8,14 +8,8 @@ class Delegate
 
 	def parse(input)
 		case input
-		when "u"
-			move_player("u")
-		when "d"
-			move_player("d")
-		when "l"
-			move_player("l")
-		when "r"
-			move_player("r")
+		when /^(up?|d(own)?|l(eft)?|r(ight)?)$/
+			move_player(input[0])
 		when "q", "quit"
 			exit
 		else
@@ -25,18 +19,7 @@ class Delegate
 
 	def move_player(direction)
 		player_pos = @grid.player_index
-		index = case direction.to_sym
-				when :u
-					@grid.above_of(player_pos)
-				when :d
-					@grid.below_of(player_pos)
-				when :l
-					@grid.left_of(player_pos)
-				when :r
-					@grid.right_of(player_pos)
-				else
-					raise ArgumentError, "invalid direction: #{c}"
-				end
+		index = @grid.in_direction_of_space(direction, player_pos)
 		other = @grid[index]
 		if other.can_pass_through?
 			use_powerup(other) if other.is_a?(PowerUp)
