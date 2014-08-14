@@ -39,6 +39,14 @@ class PowerUp < Space
 		@str = "%"
 		@health = health
 	end
+
+	class << self # powerups here:
+
+		def heal(health)
+			self.new(health: health)
+		end
+
+	end
 end
 
 class Exit < Space

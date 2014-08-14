@@ -31,7 +31,7 @@ class Grid
 				when "@"
 					Player.new
 				when "%"
-					PowerUp.new(health: 3)
+					PowerUp.heal(3)
 				when "<", ">"
 					Exit.new(c)
 				else

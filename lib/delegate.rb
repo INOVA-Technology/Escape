@@ -37,7 +37,7 @@ class Delegate
 
 	def use_powerup(powerup)
 		grid.player.health += powerup.health
-		puts "+#{powerup.health}! You have #{grid.player.health} health!"
+		puts "+#{powerup.health} health! You have #{grid.player.health} health!"
 	end
 
 end
