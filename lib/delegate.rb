@@ -18,12 +18,13 @@ class Delegate
 	end
 
 	def move_player(direction)
-		player_pos = @grid.player_index
-		index = @grid.in_direction_of_space(direction, player_pos)
-		other = @grid[index]
-		if other.can_pass_through?
-			use_powerup(other) if other.is_a?(PowerUp)
-			@grid[index] = grid.player
+		player_pos = @grid.index_of(@grid.player)
+		new_pos = @grid.in_direction_of_space(direction, player_pos)
+		new_space = @grid[new_pos]
+
+		if new_space.can_pass_through?
+			use_powerup(new_space) if new_space.is_a?(PowerUp)
+			@grid[new_pos] = grid.player
 			@grid[player_pos] = Space.new
 		else
 			puts "Nope!"

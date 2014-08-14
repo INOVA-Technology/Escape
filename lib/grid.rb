@@ -98,31 +98,8 @@ class Grid
 		end
 	end
 
-	def player_index
-		e = nil
-		i = 0
-		@spaces.each do |s|
-			if s.is_a?(Player)
-				e = i
-				break
-			end
-			i += 1
-		end
-		e
-	end
-
-	# idk if this works
 	def index_of(space)
-		e = nil
-		i = 0
-		@spaces.each do |s|
-			if s == space
-				e = i
-				break
-			end
-			i += 1
-		end
-		e
+		@spaces.index(space)
 	end
 
 	def player
