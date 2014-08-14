@@ -8,34 +8,38 @@ class Grid
 		@spaces = []
 	end
 
-	def self.empty(rows, columns)
-		a = self.new(rows, columns)
-		a.rows.times do |row|
-			a.columns.times do |col|
-				a.spaces << Space.new
-			end
-		end
-	end
+	class << self # these are for creating new maps
 
-	def self.from_map(rows, columns, map)
-		a = self.new(rows, columns)
-		map.chars.map do |c|
-			next if c == "\n"
-			a.spaces << case c
-			when " "
-				Space.new
-			when "|", "-"
-				Wall.new(c)
-			when "@"
-				Player.new
-			when "^"
-				PowerUp.new(health: 3)
-			else
-				raise ArgumentError, "invalid character: #{c}"
+		def empty(rows, columns)
+			a = self.new(rows, columns)
+			a.rows.times do |row|
+				a.columns.times do |col|
+					a.spaces << Space.new
+				end
 			end
 		end
-		a
-	end
+
+		def from_map(rows, columns, map)
+			a = self.new(rows, columns)
+			map.chars.map do |c|
+				next if c == "\n"
+				a.spaces << case c
+				when " "
+					Space.new
+				when "|", "-"
+					Wall.new(c)
+				when "@"
+					Player.new
+				when "^"
+					PowerUp.new(health: 3)
+				else
+					raise ArgumentError, "invalid character: #{c}"
+				end
+			end
+			a
+		end
+
+	end # end class methods
 
 	def [](r, c = nil)
 		if c
