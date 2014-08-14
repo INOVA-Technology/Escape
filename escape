@@ -4,21 +4,34 @@ require_relative "lib/spaces"
 require_relative "lib/grid"
 require_relative "lib/delegate"
 
-# grid = Grid.new(3, 3)
-map = <<EOT
- ----- 
+# fix this uglyness
+maps = [
+[" ----- 
 |@ %  |
 |   & |
 |     >
  ----- 
-EOT
+", [7, 7]],
+[" ------- 
+|       |
+|       |
+|       |
+|       |
+ -------
+",9, 5]]
 
-grid = Grid.from_map(7, 7, map)
+delegate = Delegate.new
 
-delegate = Delegate.new(grid)
+until maps.empty?
 
-loop do
-	puts delegate.grid
-	delegate.parse(gets.chomp.downcase)
-	puts
+	map = maps.shift
+	grid = Grid.from_map(*map[1], map[0])
+	delegate.grid = grid
+
+	until delegate.grid.complete?
+		puts delegate.grid
+		delegate.parse(gets.chomp.downcase)
+		puts
+	end
+
 end

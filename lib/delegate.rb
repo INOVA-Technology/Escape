@@ -2,7 +2,7 @@ class Delegate
 
 	attr_accessor :grid
 
-	def initialize(grid)
+	def initialize(grid = nil)
 		@grid = grid
 	end
 
@@ -28,7 +28,7 @@ class Delegate
 			@grid[player_pos] = Space.new
 			if new_space.is_a?(Exit)
 				puts "Level complete!"
-				exit
+				@grid.complete = true
 			end
 		else
 			puts "Nope!"

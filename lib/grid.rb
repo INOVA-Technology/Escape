@@ -1,12 +1,15 @@
 class Grid
 
-	attr_accessor :spaces
+	attr_accessor :spaces, :complete
+	alias_method :complete?, :complete
 
 	def initialize(rows, columns)
 		@rows = rows
 		@columns = columns
 		@spaces = []
+		@complete = false
 	end
+
 
 	class << self # these are for creating new maps
 
