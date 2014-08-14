@@ -24,8 +24,8 @@ class Delegate
 	end
 
 	def move_player(direction)
-		player_pos = @grid.find_player
-		other = case direction.to_sym
+		player_pos = @grid.player_index
+		index = case direction.to_sym
 				when :u
 					@grid.above_of(player_pos)
 				when :d
@@ -37,11 +37,19 @@ class Delegate
 				else
 					raise ArgumentError, "invalid direction: #{c}"
 				end
-		if other.class == (Space)
-			puts "good"
+		other = @grid[index]
+		if other.can_pass_through?
+			use_powerup(other) if other.is_a?(PowerUp)
+			@grid[index] = grid.player
+			@grid[player_pos] = Space.new
 		else
 			puts "Nope!"
 		end
+	end
+
+	def use_powerup(powerup)
+		grid.player.health += powerup.health
+		puts "+#{powerup.health}! You have #{grid.player.health} health!"
 	end
 
 end

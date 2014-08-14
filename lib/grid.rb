@@ -45,27 +45,35 @@ class Grid
 		end
 	end
 
+	def []=(r, c, other = nil)
+		if other
+			@spaces[@columns * r + c] = other
+		else
+			@spaces[r] = c			
+		end
+	end
+
 	def left_of(r, c = nil)
 		(c ? c -= 1 : r -= 1)
-		self[r, c]
+		(c ? [r, c] : r)
 	end
 
 	def right_of(r, c = nil)
 		(c ? c += 1 : r += 1)
-		self[r, c]
+		(c ? [r, c] : r)
 	end
 
 	def above_of(r, c = nil)
 		(c ? r -= 1 : r -= @columns)
-		self[r, c]
+		(c ? [r, c] : r)
 	end
 
 	def below_of(r, c = nil)
 		(c ? r += 1 : r += @columns)
-		self[r, c]
+		(c ? [r, c] : r)
 	end
 
-	def find_player
+	def player_index
 		e = nil
 		i = 0
 		@spaces.each do |s|
@@ -74,6 +82,17 @@ class Grid
 				break
 			end
 			i += 1
+		end
+		e
+	end
+
+	def player
+		e = nil
+		@spaces.each do |s|
+			if s.is_a?(Player)
+				e = s
+				break
+			end
 		end
 		e
 	end

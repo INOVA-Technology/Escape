@@ -20,4 +20,5 @@ delegate = Delegate.new(grid)
 loop do
 	puts delegate.grid
 	delegate.parse(gets.chomp.downcase)
+	puts
 end

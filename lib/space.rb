@@ -1,7 +1,10 @@
 class Space
+	attr_reader :can_pass_through
+	alias_method :can_pass_through?, :can_pass_through
+
 	def initialize
 		@str = " "
-		@can_pass_though = true
+		@can_pass_through = true
 	end
 
 	def to_s
@@ -10,10 +13,13 @@ class Space
 end
 
 class Player < Space
+	attr_accessor :health
+
 	def initialize
 		super()
 		@str = "@"
-		@can_pass_though = false
+		@health = 15
+		@can_pass_through = false
 	end
 end
 
@@ -21,7 +27,7 @@ class Wall < Space
 	def initialize(value)
 		super()
 		@str = value # one of these: - |
-		@can_pass_though = false
+		@can_pass_through = false
 	end
 end
 
