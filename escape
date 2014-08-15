@@ -5,17 +5,17 @@ require_relative "lib/grid"
 require_relative "lib/delegate"
 
 # fix this uglyness
-maps = [
-[" ----- 
+maps = [[
+" ----- 
 |@ %  |
 |   & |
 |     >
  ----- 
-", [5, 7]],
-[" ------- 
-|       |
-|       |
-|       |
+", [5, 7]],[
+" ------- 
+|     & >
+|      &|
+| @     |
 |       |
  -------
 ",[6, 9]]]
